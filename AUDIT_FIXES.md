@@ -4,7 +4,7 @@ Repair branch: `fix/internship-audit-20261010`. Changes are scoped to audit find
 
 ## Changed
 
-Added missing repository-level setup documentation and Windows .NET 8 test CI. No Linux-only workaround was substituted for WPF/WebView2 behavior.
+Added missing repository-level setup documentation and a Windows .NET 8 CI entry point. Added explicit System.IO and System.Net.Http imports after the first CI run exposed missing namespaces.
 
 ## Verification
 
@@ -14,4 +14,4 @@ Commands are entry points, not a claim that every live integration was executed.
 
 ## Setup and remaining evidence
 
-Requires Windows, .NET 8 and the WebView2 runtime. This environment has no dotnet/Windows UI, so the new CI job has not run here. Verify lockdown, exit, reconnect and fail/recovery behavior on real Windows before claiming anti-cheat enforcement.
+Requires Windows, .NET 8 and the WebView2 runtime. The Windows CI rerun still fails compilation: the configured SafeExam.Client.Program startup class is absent, and BrowserHost uses a CoreWebView2Controller property unavailable on the WPF control. The test project contains no test source files. The PR remains draft pending native startup/controller repair and actual tests. Verify lockdown, exit, reconnect and fail/recovery behavior on real Windows before claiming anti-cheat enforcement.
